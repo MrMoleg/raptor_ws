@@ -9,9 +9,9 @@
                 "/opt/ros/jazzy/include/**",
                 "/usr/include/**",
                 "${workspaceFolder}/src/rex_interfaces/include/**",
-                "${workspaceFolder}/src/can_bridge/include/**",
-                "${workspaceFolder}/src/libVescCan/include/**",
-                "${workspaceFolder}/src/can_bridge/libVescCan/include/**"
+                "${workspaceFolder}/src/ros_deep_sampler/include/**",
+                "${workspaceFolder}/src/sampler_hardware_interfaces/include/**",
+                "${workspaceFolder}/src/libVescCan/include/**"
             ],
             "name": "ROS",
             "intelliSenseMode": "gcc-x64",

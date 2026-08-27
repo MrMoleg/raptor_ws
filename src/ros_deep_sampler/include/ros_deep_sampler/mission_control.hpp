@@ -27,7 +27,6 @@ using RoverStatusMsg = rex_interfaces::msg::RoverStatus;
 
 using MissionMsg = rex_interfaces::msg::SamplerFeedback;
 using MissionCmd = rex_interfaces::msg::SamplerControl;
-//using SamplerCanCmd = sampler_motion_interfaces::msg::SamplerCanCmd;
 
 class MissionControl : public rclcpp::Node
 {

@@ -2,7 +2,6 @@
 
 `sampler_cli.py` is a command-line tool for sending commands to the sampler through ROS 2.
 
-The script publishes `sampler_motion_interfaces/msg/SamplerMissionCmd` messages to:
 
 ```text
 /MQTT/MissionCommand

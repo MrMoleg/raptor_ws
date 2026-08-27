@@ -5,9 +5,6 @@
 #include <rclcpp/subscription.hpp>
 #include "rex_interfaces/msg/rover_status.hpp"
 #include <sensor_msgs/msg/joint_state.hpp>
-// #include "sampler_motion_interfaces/msg/sampler_can_cmd.hpp"
-// #include "sampler_motion_interfaces/msg/sampler_can_feedback.hpp"
-// #include "sampler_motion_interfaces/msg/sampler_mission_cmd.hpp"
 
 #include "rex_interfaces/msg/sampler_can_cmd.hpp"
 #include "rex_interfaces/msg/sampler_can_status.hpp"

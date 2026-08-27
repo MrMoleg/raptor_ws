@@ -22,7 +22,6 @@ if(NOT controller_manager_FOUND)
 endif()
 
 find_package(ament_cmake REQUIRED)
-find_package(sampler_motion_interfaces REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_action REQUIRED)
 find_package(rclcpp_components REQUIRED)
@@ -98,8 +97,7 @@ add_executable(ros_deep_sampler_node
 ament_target_dependencies(ros_deep_sampler_node
   rclcpp
   std_msgs
-  rex_interfaces   
-  sampler_motion_interfaces    
+  rex_interfaces     
   rclcpp_action
   sensor_msgs
   trajectory_msgs
@@ -125,7 +123,6 @@ target_link_libraries(ros_deep_sampler_node
 ament_export_dependencies(
   rosidl_default_runtime
   rex_interfaces 
-  sampler_motion_interfaces
 )
 
 # Install

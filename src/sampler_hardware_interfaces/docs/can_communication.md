@@ -4,7 +4,7 @@ This document describes communication between the `sampler_hardware_interfaces` 
 
 ## CAN Command
 
-**ROS message:** `sampler_motion_interfaces/msg/SamplerCanCmd`
+**ROS message:** `rex_interfaces/msg/SamplerCanCmd`
 
 ```text
 uint8[] actuator_id
@@ -16,7 +16,7 @@ The arrays are indexed by actuator. The `actuator_id`, `command_id`, and `set_va
 
 ## CAN Feedback
 
-**ROS message:** `sampler_motion_interfaces/msg/SamplerFeedback`
+**ROS message:** `rex_interfaces/msg/SamplerCanStatus`
 
 ```text
 uint8[] actuator_id
