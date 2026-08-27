@@ -1,6 +1,8 @@
 FROM wisniax/ros-rover-base:latest@sha256:165e355cb43b4f90348b2af6dd94dbb1b6f45f661b3edceed92221ad3c99e13b
 
 RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y ros-jazzy-control-msgs \
+                ros-jazzy-ros2-control \
+                ros-jazzy-ros2-controllers \
                 ros-jazzy-hardware-interface \
                 ros-jazzy-ros-gz \
                 ros-jazzy-plotjuggler-ros

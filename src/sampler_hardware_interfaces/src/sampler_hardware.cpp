@@ -21,7 +21,6 @@
 #include <string>
 #include <vector>
 
-#include <angles/angles.h>
 #include <sampler_hardware_interfaces/sampler_hardware.hpp>
 #include <rclcpp/executors.hpp>
 #include <libVescCan/VESC_Consts.h>
@@ -35,8 +34,6 @@ when rotating in the positive direction */
 double sumRotationFromMinus2PiTo2Pi(const double current_wrapped_rad, double total_rotation_in)
 {
   double delta = 0;
-  angles::shortest_angular_distance_with_large_limits(total_rotation_in, current_wrapped_rad, 2 * M_PI, -2 * M_PI,
-                                                      delta);
 
   // Add the corrected delta to the total rotation
   return total_rotation_in + delta;

@@ -1,87 +1,55 @@
 cmake_minimum_required(VERSION 3.16)
 project(sampler_hardware_interfaces)
 
-# --------------------------------------------------
-# Compiler options
-# --------------------------------------------------
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# --------------------------------------------------
-# Find dependencies
-# --------------------------------------------------
+# Dependencies
 find_package(ament_cmake REQUIRED)
-
 find_package(hardware_interface REQUIRED)
 find_package(pluginlib REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_lifecycle REQUIRED)
-find_package(angles REQUIRED)
-find_package(ros2_control_test_assets REQUIRED)
-find_package(gz-transport13 REQUIRED)
 find_package(rex_interfaces REQUIRED)
 find_package(libVescCan REQUIRED)
-# --------------------------------------------------
-# Build shared library (hardware plugin)
-# --------------------------------------------------
+
+# Hardware interface library
 add_library(${PROJECT_NAME} SHARED
   src/sampler_hardware.cpp
   src/RosCanConstants.cpp
 )
 
-# --------------------------------------------------
-# Include directories
-# --------------------------------------------------
 target_include_directories(${PROJECT_NAME}
   PUBLIC
     include
 )
 
-
-
-# --------------------------------------------------
-# Dependencies for the library
-# --------------------------------------------------
 ament_target_dependencies(${PROJECT_NAME}
   hardware_interface
   pluginlib
   rclcpp
   rclcpp_lifecycle
-  angles
   rex_interfaces
-  ros2_control_test_assets
 )
+
+target_link_libraries(${PROJECT_NAME}
+  libVescCan::libVescCan
+)
+
+# Export dependencies
 ament_export_dependencies(
-  rex_interfaces 
+  rex_interfaces
 )
 
+ament_export_libraries(${PROJECT_NAME})
 
-
-# --------------------------------------------------
-# Export plugin description file
-# --------------------------------------------------
+# Export ros2_control hardware plugin
 pluginlib_export_plugin_description_file(
   hardware_interface
   sampler_hardware_interfaces.xml
 )
 
-
-target_link_libraries(${PROJECT_NAME}
-  gz-transport13::core
-)
-target_link_libraries(${PROJECT_NAME}
-  ${cpp_typesupport_target}
-  libVescCan::libVescCan
-
-)
-# --------------------------------------------------
-# Export libraries (optional but recommended)
-# --------------------------------------------------
-ament_export_libraries(${PROJECT_NAME})
-
-# --------------------------------------------------
-# Install targets
-# --------------------------------------------------
+# Install library
 install(
   TARGETS ${PROJECT_NAME}
   LIBRARY DESTINATION lib
@@ -97,30 +65,4 @@ install(
   DESTINATION share/${PROJECT_NAME}
 )
 
-# --------------------------------------------------
-# Testing section
-# --------------------------------------------------
-if(BUILD_TESTING)
-  find_package(ament_cmake_gmock REQUIRED)
-  find_package(hardware_interface REQUIRED)
-
-  ament_add_gmock(test_my_robot_hardware
-    test/test_load_sampler_hardware_interfaces.cpp
-  )
-
-  target_link_libraries(test_my_robot_hardware
-    ${PROJECT_NAME}
-  )
-
-  ament_target_dependencies(test_my_robot_hardware
-    hardware_interface
-  )
-
-  # optional compile definitions (if needed)
-  target_compile_definitions(test_my_robot_hardware PRIVATE "TESTING")
-endif()
-
-# --------------------------------------------------
-# Final package macro
-# --------------------------------------------------
 ament_package()

@@ -10,8 +10,7 @@
 #include "rex_interfaces/msg/sampler_can_status.hpp"
 #include "rex_interfaces/msg/sampler_control.hpp"
 
-#include <gz/transport/Node.hh>
-#include <gz/msgs/double.pb.h>
+// #include <gz/transport/Node.hh>
 #include <iostream>
 #include "std_msgs/msg/float64.hpp"
 #include "sampler_hardware_interfaces/RosCanConstants.hpp"
