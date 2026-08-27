@@ -1,0 +1,56 @@
+launch:
+  - node:
+      pkg: robot_state_publisher
+      exec: robot_state_publisher
+      name: robot_state_publisher
+      output: screen
+      param:
+        - name: robot_description
+          value: "$(command 'cat $(find-pkg-share ros_deep_sampler)/urdf/sampler_model.urdf')"
+
+  - node:
+      pkg: controller_manager
+      exec: ros2_control_node
+      name: controller_manager
+      output: screen
+      param:
+        - name: robot_description
+          value: "$(command 'cat $(find-pkg-share ros_deep_sampler)/urdf/sampler_model.urdf')"
+        - from: "$(find-pkg-share ros_deep_sampler)/config/minimal.yaml"
+
+  - executable:
+      cmd: "ros2 run controller_manager spawner joint_state_broadcaster"
+      output: screen
+
+  - executable:
+      cmd: "ros2 run controller_manager spawner position_controller"
+      output: screen
+
+  - executable:
+      cmd: "ros2 run controller_manager spawner velocity_command_controller"
+      output: screen
+
+  - executable:
+      cmd: "ros2 run controller_manager spawner clamp_position_controller"
+      output: screen
+
+  - executable:
+      cmd: "ros2 run controller_manager spawner rotor_velocity_controller"
+      output: screen
+
+  - executable:
+      cmd: "ros2 run controller_manager spawner vacuum_rotor_velocity_controller"
+      output: screen
+
+  - executable:
+      cmd: "ros2 run controller_manager spawner brush_rotor_velocity_controller"
+      output: screen
+
+  - node:
+      pkg: ros_deep_sampler
+      exec: ros_deep_sampler_node
+      name: sampler_mission_node
+      output: screen
+      param:
+        - name: use_sim_time
+          value: false
