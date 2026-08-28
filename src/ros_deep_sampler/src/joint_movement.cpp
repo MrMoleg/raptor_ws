@@ -27,14 +27,6 @@ JointMovement::JointMovement(rclcpp::Node *node)
         node_->create_publisher<std_msgs::msg::Float64MultiArray>(
             "/brush_rotor_velocity_controller/commands", 10);
 
-    joint_sub_ =
-        node_->create_subscription<sensor_msgs::msg::JointState>(
-            "/joint_states",
-            10,
-            std::bind(
-                &JointMovement::jointStateCallback,
-                this,
-                std::placeholders::_1));
 
     sampler_can_feedback_sub_ = node_->create_subscription<SamplerCanFeedback>(
             RosCanConstants::RosTopics::can_sampler_feedback, 10,
@@ -52,16 +44,6 @@ JointMovement::JointMovement(rclcpp::Node *node)
 
 }
 
-void JointMovement::jointStateCallback(const sensor_msgs::msg::JointState::SharedPtr msg)
-    {
-      // RCLCPP_INFO(this->get_logger(), "Received State Callback");
-      for (size_t i = 0; i < msg->name.size(); ++i) {
-        const std::string & name = msg->name[i];
-        current_position_[name] = msg->position[i];
-        current_velocity_[name] = msg->velocity[i];
-    }
-    
-  }
 
 void JointMovement::feedbackCallback(const SamplerCanFeedback::SharedPtr msg){
     for (size_t i = 0; i < msg->actuator_id.size(); ++i) {
@@ -567,46 +549,7 @@ std::string JointMovement::getJointName(JointsIds id)
     }
 }
 
-// void JointMovement::moveJoint(const std::vector<JointCommand>& commands){
-//     trajectory_msgs::msg::JointTrajectory traj;
-//     for (const auto &cmd : commands)
-//     {
-//     //    traj.joint_names.push_back(getJointName(cmd.id));
-        
-//         generateTrajectory(
-//             traj,
-//             getJointName(cmd.id),
-//             get_current_position(cmd.id),
-//             cmd.position,
-//             cmd.max_velocity,
-//             cmd.calibration);
 
-//     }
-//     sendTrajectory(traj);
-// }
-
-// void JointMovement::calibrateDrill(double vel){
-//     float final_pos;
-    
-//     std::string joint_name;
-//     joint_name = "drill_joint";
-//     final_pos = 0.6; //move up on max 
-
-//     trajectory_msgs::msg::JointTrajectory traj;
-//     trajectory_msgs::msg::JointTrajectoryPoint p;
-//     p.positions = {final_pos}; //dist or final_pos?
-//     double time_to_position =  std::fabs(final_pos)/vel;
-//     RCLCPP_INFO(node_->get_logger(), "Final position: %f",final_pos);  
-//     RCLCPP_INFO(node_->get_logger(), "Time to position: %f",time_to_position);
-//     p.time_from_start = rclcpp::Duration::from_seconds(time_to_position);
-//     traj.joint_names.push_back(joint_name);
-//     traj.points.push_back(p);
-
-//     sendTrajectory(traj, Jo);
-
-//     return;
-
-// }
 
 void JointMovement::setTrajectoryStatus(bool status){
     trajectory_finished_ = status;
@@ -708,13 +651,7 @@ void JointMovement::sendTrajectory(
 bool JointMovement::isTrajectoryFinished()
 {
     return trajectory_finished_;
-    // if(!result_future_.valid())
-    //     return false;
-
-
-    // return result_future_.wait_for(
-    //     std::chrono::seconds(0))
-    //     == std::future_status::ready;
+    
 }
 
 void JointMovement::cancelMovement()

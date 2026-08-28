@@ -171,80 +171,6 @@ def main():
                 rclpy.shutdown()
                 return 1
 
-    # # ---------------------------------------------------------
-    # # Drill rotor
-    # # ---------------------------------------------------------
-
-    # elif command == "drill_rotor":
-
-    #     if len(sys.argv) != 3:
-    #         print("Usage: drill_rotor <value>")
-    #         rclpy.shutdown()
-    #         return 1
-
-    #     msg.drill_action = float(sys.argv[2])
-
-    # # ---------------------------------------------------------
-    # # Vacuum
-    # # ---------------------------------------------------------
-
-    # elif command == "vacuum":
-
-    #     if len(sys.argv) != 3:
-    #         print("Usage: vacuum <value>")
-    #         rclpy.shutdown()
-    #         return 1
-
-    #     msg.vacuum_suction = float(sys.argv[2])
-
-    # # ---------------------------------------------------------
-    # # Brush
-    # # ---------------------------------------------------------
-
-    # elif command == "brush":
-
-    #     if len(sys.argv) != 3:
-    #         print("Usage: brush <value>")
-    #         rclpy.shutdown()
-    #         return 1
-
-    #     msg.brush_rotation = float(sys.argv[2])
-
-    # # ---------------------------------------------------------
-    # # Vacuum valve
-    # # ---------------------------------------------------------
-
-    # elif command == "open_vacuum":
-
-    #     if len(sys.argv) != 3:
-    #         print("Usage: open_vacuum <0|1>")
-    #         rclpy.shutdown()
-    #         return 1
-
-    #     value = int(sys.argv[2])
-
-    #     if value not in (0, 1):
-    #         print("open_vacuum must be 0 or 1")
-    #         rclpy.shutdown()
-    #         return 1
-
-    #     msg.open_vacuum = bool(value)
-
-    # ---------------------------------------------------------
-    # Unknown command
-    # ---------------------------------------------------------
-
-    # else:
-
-    #     print(f"Unknown command: {command}")
-    #     print_usage()
-
-    #     rclpy.shutdown()
-    #     return 1
-
-    # ---------------------------------------------------------
-    # Publish
-    # ---------------------------------------------------------
 
     # Give ROS a moment to establish the publisher connection.
     for _ in range(20):
@@ -253,10 +179,10 @@ def main():
         rclpy.spin_once(node, timeout_sec=0.1)
 
     print(f"Subscribers: {publisher.get_subscription_count()}")
-    # for _ in range():
-    publisher.publish(msg)
+    for _ in range(5):
+        publisher.publish(msg)
     
-    rclpy.spin_once(node, timeout_sec=0.1)
+        rclpy.spin_once(node, timeout_sec=0.1)
 
 
     print("Command sent:")

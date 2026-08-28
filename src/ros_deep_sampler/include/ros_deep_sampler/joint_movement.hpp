@@ -126,7 +126,6 @@ class  JointMovement{
         void setGoalStatus(bool status);
         void stop_movement();
       
-        void jointStateCallback(const sensor_msgs::msg::JointState::SharedPtr msg);
         void feedbackCallback(const SamplerCanFeedback::SharedPtr msg);
 
 
@@ -138,7 +137,7 @@ class  JointMovement{
 
     private:
 
-        bool sim_hardware = true;
+        bool sim_hardware = false;
         rclcpp::Node *node_;
         //rclcpp_action::Client<FollowJointTrajectory>::SharedPtr tjc_client_;
         rclcpp_action::Client<FollowJointTrajectory>::SharedPtr position_client_;
@@ -151,7 +150,6 @@ class  JointMovement{
         rclcpp::Publisher<std_msgs::msg::Float64MultiArray>::SharedPtr vacuum_rotor_velocity_pub_;
         rclcpp::Publisher<std_msgs::msg::Float64MultiArray>::SharedPtr brush_rotor_velocity_pub_;
 
-        rclcpp::Subscription<sensor_msgs::msg::JointState>::SharedPtr joint_sub_;
         rclcpp::Subscription<SamplerCanFeedback>::SharedPtr sampler_can_feedback_sub_;
         
         rclcpp_action::Client<FollowJointTrajectory>::SharedPtr active_client_;

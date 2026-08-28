@@ -156,7 +156,7 @@ private:
 
     static constexpr int MAX_RECOVERY_ATTEMPT = 5;
     
-    static constexpr int VACUUM_SUCTION_TIME = 200;               // seconds
+    static constexpr int VACUUM_SUCTION_TIME = 200;               
     static constexpr int WAIT_TIME_BEETWEN_STATES = 20; 
     static constexpr int POUR_TIME = 100;
     static constexpr double JOINT_CALIBRATION_SPEED = 0.02;

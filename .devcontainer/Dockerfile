@@ -5,7 +5,8 @@ RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y ros-jazzy-contro
                 ros-jazzy-ros2-controllers \
                 ros-jazzy-hardware-interface \
                 ros-jazzy-ros-gz \
-                ros-jazzy-plotjuggler-ros
+                ros-jazzy-plotjuggler-ros \
+                ros-jazzy-rmw-cyclonedds-cpp
 
 
 # Dockerfile for ROS-JAZZY
