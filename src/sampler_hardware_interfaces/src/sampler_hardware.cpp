@@ -392,6 +392,10 @@ hardware_interface::return_type SamplerHardware::write(const rclcpp::Time& /*tim
       
 
     }
+    cmd_.command_id[3] = VESC_COMMAND_SET_RPM;
+    cmd_.command_id[4] = VESC_COMMAND_SET_RPM;
+    cmd_.command_id[5] = VESC_COMMAND_SET_RPM;
+    cmd_.command_id[5] = VESC_COMMAND_SET_POS;
 
     cmd_.set_value[3] = rotor_cmd_;
     cmd_.set_value[4] = vacuum_rotor_cmd_;

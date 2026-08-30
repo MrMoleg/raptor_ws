@@ -492,30 +492,30 @@ void MissionControl::publishAppFeedback(){
   // RCLCPP_INFO(this->get_logger(), "Current mission command is =  %d", missionCmdMsg->mission_cmd);
   // RCLCPP_INFO(this->get_logger(), "Current Rover status is =  %d", LastStatusMsg);
   std::string str_ = to_string();
-   RCLCPP_INFO(
-        this->get_logger(),
-        "\n"
-        "========== Mission Feedback ==========\n"
-        "Control type:          %d\n"
-        "Autonomy state:        %d\n"
-        "Platform position:     %.3f\n"
-        "Drill position:        %.3f\n"
-        "Drill rotor velocity:  %.3f\n"
-        "Brush rotor velocity:  %.3f\n"
-        "Vacuum rotor velocity: %.3f\n"
-        "Container position:    %.3f\n"
-        "Goal state:            %d\n"
-        "======================================",
-        missionFeedbackMsg->control_type,
-        missionFeedbackMsg->autonomy_state,
-        missionFeedbackMsg->platform_pos,
-        missionFeedbackMsg->drill_pos,
-        missionFeedbackMsg->drill_rot_vel,
-        missionFeedbackMsg->brush_rot_vel,
-        missionFeedbackMsg->vacuum_suction_vel,
-        missionFeedbackMsg->container_pos,
-        missionFeedbackMsg->goal_state
-    );
+//    RCLCPP_INFO(
+//         this->get_logger(),
+//         "\n"
+//         "========== Mission Feedback ==========\n"
+//         "Control type:          %d\n"
+//         "Autonomy state:        %d\n"
+//         "Platform position:     %.3f\n"
+//         "Drill position:        %.3f\n"
+//         "Drill rotor velocity:  %.3f\n"
+//         "Brush rotor velocity:  %.3f\n"
+//         "Vacuum rotor velocity: %.3f\n"
+//         "Container position:    %.3f\n"
+//         "Goal state:            %d\n"
+//         "======================================",
+//         missionFeedbackMsg->control_type,
+//         missionFeedbackMsg->autonomy_state,
+//         missionFeedbackMsg->platform_pos,
+//         missionFeedbackMsg->drill_pos,
+//         missionFeedbackMsg->drill_rot_vel,
+//         missionFeedbackMsg->brush_rot_vel,
+//         missionFeedbackMsg->vacuum_suction_vel,
+//         missionFeedbackMsg->container_pos,
+//         missionFeedbackMsg->goal_state
+//     );
 
   PubFeedback_->publish(*missionFeedbackMsg);
 
