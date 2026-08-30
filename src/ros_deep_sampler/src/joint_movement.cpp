@@ -9,23 +9,23 @@ JointMovement::JointMovement(rclcpp::Node *node)
     position_client_ =
     rclcpp_action::create_client<FollowJointTrajectory>(
         node_,
-        "/position_controller/follow_joint_trajectory");
+        "position_controller/follow_joint_trajectory");
    
     joints_vel_pub_ = node_->create_publisher<std_msgs::msg::Float64MultiArray>(
-            "/velocity_command_controller/commands", 10);
+            "velocity_command_controller/commands", 10);
 
     clamp_cmd_pub_ = 
         node_->create_publisher<std_msgs::msg::Float64MultiArray>(
-            "/clamp_position_controller/commands", 10);
+            "clamp_position_controller/commands", 10);
     rotor_velocity_pub_ =
         node_->create_publisher<std_msgs::msg::Float64MultiArray>(
-            "/rotor_velocity_controller/commands", 10);
+            "rotor_velocity_controller/commands", 10);
     vacuum_rotor_velocity_pub_ =
         node_->create_publisher<std_msgs::msg::Float64MultiArray>(
-            "/vacuum_rotor_velocity_controller/commands", 10);
+            "vacuum_rotor_velocity_controller/commands", 10);
     brush_rotor_velocity_pub_ =
         node_->create_publisher<std_msgs::msg::Float64MultiArray>(
-            "/brush_rotor_velocity_controller/commands", 10);
+            "brush_rotor_velocity_controller/commands", 10);
 
 
     sampler_can_feedback_sub_ = node_->create_subscription<SamplerCanFeedback>(

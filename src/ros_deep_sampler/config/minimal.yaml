@@ -1,4 +1,4 @@
-controller_manager:
+/sampler/controller_manager:
   ros__parameters:
     update_rate: 10
 
@@ -23,7 +23,7 @@ controller_manager:
     velocity_command_controller:
       type: forward_command_controller/ForwardCommandController
 
-velocity_command_controller:
+/sampler/velocity_command_controller:
   ros__parameters:
     joints:
       - platform_vel_joint
@@ -32,7 +32,7 @@ velocity_command_controller:
 
     interface_name: velocity
 
-position_controller:
+/sampler/position_controller:
   ros__parameters:
     joints:
       - platform_joint
@@ -52,13 +52,13 @@ position_controller:
       goal_time: 1.0
       stopped_velocity_tolerance: 0.01
 
-clamp_position_controller:
+/sampler/clamp_position_controller:
   ros__parameters:
     joints:
       - clamp_joint
     interface_name: position
 
-rotor_velocity_controller:
+/sampler/rotor_velocity_controller:
   ros__parameters:
     joints:
       - rotor_joint
@@ -66,7 +66,7 @@ rotor_velocity_controller:
     interface_name: velocity
 
 
-vacuum_rotor_velocity_controller:
+/sampler/vacuum_rotor_velocity_controller:
   ros__parameters:
     joints:
       - vacuum_rotor_joint
@@ -74,7 +74,7 @@ vacuum_rotor_velocity_controller:
     interface_name: velocity
 
 
-brush_rotor_velocity_controller:
+/sampler/brush_rotor_velocity_controller:
   ros__parameters:
     joints:
       - brush_rotor_joint

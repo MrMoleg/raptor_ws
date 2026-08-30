@@ -3,6 +3,7 @@ launch:
       pkg: robot_state_publisher
       exec: robot_state_publisher
       name: robot_state_publisher
+      namespace: sampler
       output: screen
       param:
         - name: robot_description
@@ -12,6 +13,7 @@ launch:
       pkg: controller_manager
       exec: ros2_control_node
       name: controller_manager
+      namespace: sampler
       output: screen
       param:
         - name: robot_description
@@ -19,37 +21,38 @@ launch:
         - from: "$(find-pkg-share ros_deep_sampler)/config/minimal.yaml"
 
   - executable:
-      cmd: "ros2 run controller_manager spawner joint_state_broadcaster"
-      output: screen
+     cmd: "ros2 run controller_manager spawner joint_state_broadcaster --controller-manager /sampler/controller_manager"
+     output: screen
 
   - executable:
-      cmd: "ros2 run controller_manager spawner position_controller"
-      output: screen
+     cmd: "ros2 run controller_manager spawner position_controller --controller-manager /sampler/controller_manager"
+     output: screen
 
   - executable:
-      cmd: "ros2 run controller_manager spawner velocity_command_controller"
-      output: screen
+     cmd: "ros2 run controller_manager spawner velocity_command_controller --controller-manager /sampler/controller_manager"
+     output: screen
 
   - executable:
-      cmd: "ros2 run controller_manager spawner clamp_position_controller"
-      output: screen
+     cmd: "ros2 run controller_manager spawner clamp_position_controller --controller-manager /sampler/controller_manager"
+     output: screen
 
   - executable:
-      cmd: "ros2 run controller_manager spawner rotor_velocity_controller"
-      output: screen
+     cmd: "ros2 run controller_manager spawner rotor_velocity_controller --controller-manager /sampler/controller_manager"
+     output: screen
 
   - executable:
-      cmd: "ros2 run controller_manager spawner vacuum_rotor_velocity_controller"
-      output: screen
+     cmd: "ros2 run controller_manager spawner vacuum_rotor_velocity_controller --controller-manager /sampler/controller_manager"
+     output: screen
 
   - executable:
-      cmd: "ros2 run controller_manager spawner brush_rotor_velocity_controller"
-      output: screen
+     cmd: "ros2 run controller_manager spawner brush_rotor_velocity_controller --controller-manager /sampler/controller_manager"
+     output: screen
 
   - node:
       pkg: ros_deep_sampler
       exec: ros_deep_sampler_node
       name: sampler_mission_node
+      namespace: sampler
       output: screen
       param:
         - name: use_sim_time
